@@ -1,0 +1,40 @@
+---
+- name: Instala awesome e seus pacotes
+  ansible.builtin.apt:
+    name: "{{ awesome_packages }}"
+    state: present
+    force_apt_get: yes
+  become: yes
+
+- name: Clone awesome-wm-widgets
+  ansible.builtin.git:
+    repo: "https://github.com/streetturtle/awesome-wm-widgets"
+    dest: "~{{ local_username }}/.config/awesome/awesome-wm-widgets"
+  become_user: "{{ local_username }}"
+
+- name: Clone lain
+  ansible.builtin.git:
+    repo: "https://github.com/lcpz/lain"
+    dest: "~{{ local_username }}/.config/awesome/lain"
+  become_user: "{{ local_username }}"
+
+- block:
+  - name: verifica se arquivo de config do Awesome existe
+    ansible.builtin.stat:
+      path: "~{{ local_username }}/.config/awesome/rc.lua"
+    register: dotawesomeconfig
+
+  - name: faz backup do arquivo de configuracao do awesome
+    ansible.builtin.copy:
+      src: "~{{ local_username }}/.config/awesome/rc.lua"
+      dest: "~{{ local_username }}/.config/awesome/rc.lua.bkp" 
+    when: dotawesomeconfig.stat.exists
+   
+  - name: copia arquivo de configuração do awesome
+    ansible.builtin.copy:
+     src: rc.lua
+     dest: "~{{ local_username }}/.config/awesome/rc.lua" 
+     force: yes
+
+  become: yes
+  become_user: "{{ local_username }}"
