@@ -35,6 +35,12 @@
      src: rc.lua
      dest: "~{{ local_username }}/.config/awesome/rc.lua" 
      force: yes
+  
+  - name: copia modulo json.lua
+    ansible.builtin.copy:
+     src: json.lua
+     dest: "~{{ local_username }}/.config/awesome/json.lua" 
+     force: yes
 
   become: yes
   become_user: "{{ local_username }}"
