@@ -1,0 +1,26 @@
+---
+
+- name: add msedge apt key
+  ansible.builtin.apt_key:
+    url: "{{ msedge_apt_key_url }}"
+    keyring: "{{ msedge_apt_key_keyring }}"
+  become: yes
+  become_user: root
+
+- name: add google chrome repo
+  ansible.builtin.apt_repository:
+    repo: "{{ msedge_repo }}"
+    state: present
+    filename: microsoft-edge
+  become: yes
+  become_user: root
+
+- name: install latest google chrome
+  ansible.builtin.apt:
+    name: microsoft-edge-stable
+    force_apt_get: yes
+  become: yes
+  become_user: root
+
+...
+
