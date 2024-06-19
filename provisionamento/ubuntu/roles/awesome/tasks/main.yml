@@ -17,7 +17,13 @@
     repo: "https://github.com/lcpz/lain"
     dest: "~{{ local_username }}/.config/awesome/lain"
   become_user: "{{ local_username }}"
-
+  
+- name: Clone arc-icon-theme
+  ansible.builtin.git:
+    repo: "https://github.com/horst3180/arc-icon-theme"
+    dest: "~{{ local_username }}/.config/awesome/arc-icon-theme"
+  become_user: "{{ local_username }}"
+  
 - block:
   - name: verifica se arquivo de config do Awesome existe
     ansible.builtin.stat:
@@ -41,6 +47,13 @@
      src: json.lua
      dest: "~{{ local_username }}/.config/awesome/json.lua" 
      force: yes
-
+  
+  - name: copia arc-icon-theme
+    ansible.builtin.copy:
+     src: "~{{ local_username }}/.config/awesome/arc-icon-theme/Arc"
+     dest: "~{{ local_username }}/.icons/" 
+     force: yes
+    become: yes
+    
   become: yes
   become_user: "{{ local_username }}"
