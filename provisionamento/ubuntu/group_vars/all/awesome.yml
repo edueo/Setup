@@ -1,5 +1,8 @@
 ---
-
+awesome_widgets_repo: "https://github.com/streetturtle/awesome-wm-widgets"
+awesome_arc_icon_repo: "https://github.com/horst3180/arc-icon-theme"
+awesome_lain_repo: "https://github.com/lcpz/lain"
+    
 awesome_packages:
   - suckless-tools
   - flameshot
