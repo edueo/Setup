@@ -3,3 +3,6 @@
 - import_playbook: git.yml
 - import_playbook: awesome.yml
 - import_playbook: msedge.yml
+- import_playbook: vscode.yml
+- import_playbook: post_install.yml
+
