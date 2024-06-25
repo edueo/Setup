@@ -1,11 +1,19 @@
 ---
 - block:
+    - name: verifica se nvim config existe
+      ansible.builtin.stat:
+       path: "~{{ local_username }}/.config/nvim"
+      register: dotnvimconfig
+
     - name: instala Lazyvim 
       git:
         repo: "https://github.com/LazyVim/starter"
         dest: "~{{local_username}}/.config/nvim"
       become_user: "{{ local_username }}"
+      when: dotnvimconfig.stat.islnk is not defined
+
     - name: remove git repository
       ansible.builtin.shell: "rm -rf ~{{local_username}}/.config/nvim/.git"
+      when: dotnvimconfig.stat.exists
 ...
 

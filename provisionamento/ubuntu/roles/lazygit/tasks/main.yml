@@ -1,0 +1,6 @@
+---
+- block:
+    - name: instala lazygit via shell script
+      ansible.builtin.shell: "sh scripts/lazygit.sh"
+...
+

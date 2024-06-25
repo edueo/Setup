@@ -6,6 +6,7 @@
 - import_playbook: vscode.yml
 - import_playbook: zellij.yml
 - import_playbook: nvim.yml
+- import_playbook: lazygit.yml
 - import_playbook: lazyvim.yml
 - import_playbook: post_install.yml
 
