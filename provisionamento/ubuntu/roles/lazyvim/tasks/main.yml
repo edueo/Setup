@@ -1,0 +1,11 @@
+---
+- block:
+    - name: instala Lazyvim 
+      git:
+        repo: "https://github.com/LazyVim/starter"
+        dest: "~{{local_username}}/.config/nvim"
+      become_user: "{{ local_username }}"
+    - name: remove git repository
+      ansible.builtin.shell: "rm -rf ~{{local_username}}/.config/nvim/.git"
+...
+

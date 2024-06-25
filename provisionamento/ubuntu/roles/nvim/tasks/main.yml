@@ -1,0 +1,9 @@
+---
+
+- name: install nvim
+  ansible.builtin.shell: "snap install nvim --classic"
+  become: true
+  become_user: root
+
+...
+
