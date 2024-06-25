@@ -1,0 +1,9 @@
+---
+
+- name: install zellij
+  ansible.builtin.shell: "snap install zellij --classic"
+  become: true
+  become_user: root
+
+...
+
